@@ -1,0 +1,15 @@
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    schema: import.sql
+---
+spring:
+  profiles: production
+  datasource:
+    url: jdbc:mysql://localhost/test
+    username: test
+    password: test
+    driver-class-name: com.mysql.jdbc.Driver
+  thymeleaf:
+    cache: true
