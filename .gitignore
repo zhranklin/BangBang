@@ -1,13 +1,7 @@
-### gradle
-
-.gradle
 .idea/
 build/
-gradle-app.setting
-!gradle-wrapper.jar
-.gradletasknamecache
-
-
+project/
+target/
 
 *.log
 

@@ -23,9 +23,16 @@ public class MainController {
 
   @RequestMapping("/")
   String home(Model model) {
-    model.addAttribute("city", userMapper.findByUserName("CA"));
+    model.addAttribute("city", userMapper.findByUserName("user1"));
     return "home";
   }
+
+  @RequestMapping("/missions")
+  String missions(Model model) {
+//    model.addAttribute()
+    return "missions";
+  }
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(MainController.class, args);
   }
