@@ -19,19 +19,23 @@ class UserMapperTest extends FlatSpec with TestContextManagement with Matchers {
 
   lazy val user = userMapper.findByUserName("user1")
   "a user with username of user1" should "have password be psw" in {
-    user.password == "psw"
+    assert(user.password == "psw")
+  }
+
+  it should "have id be 1" in {
+    assert(user.id == 1)
   }
 
   it should "have realname be xiaoming1" in {
-    user.realname == "xiaoming1"
+    assert(user.realname == "xiaoming1")
   }
 
   it should "have phone be 123" in {
-    user.phone == "123"
+    assert(user.phone == "123")
   }
 
   it should "have no coin" in {
-    user.coin == 0
+    assert(user.coin == 0)
   }
 
 }

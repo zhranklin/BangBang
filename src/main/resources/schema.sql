@@ -1,40 +1,40 @@
 CREATE TABLE user (
   id       INT PRIMARY KEY AUTO_INCREMENT,
-  username VARCHAR(20)  NOT NULL UNIQUE,
-  password VARCHAR(20)  NOT NULL,
+  username VARCHAR(20) NOT NULL UNIQUE,
+  password VARCHAR(20) NOT NULL,
   realname VARCHAR(20) NOT NULL,
-  phone    VARCHAR(20)  NOT NULL,
-  coin     INT          NOT NULL
+  phone    VARCHAR(20) NOT NULL,
+  coin     INT         NOT NULL
 );
 
 CREATE TABLE place (
   id        INT PRIMARY KEY AUTO_INCREMENT,
   name      VARCHAR(20)
-            NULL UNIQUE,
-  longitude DOUBLE       NOT NULL,
-  latitude  DOUBLE       NOT NULL
+                   NULL UNIQUE,
+  longitude DOUBLE NOT NULL,
+  latitude  DOUBLE NOT NULL
 );
 
 CREATE TABLE mission (
   id          INT PRIMARY KEY AUTO_INCREMENT,
-  start       INT          NOT NULL REFERENCES place (id),
-  dest        INT          NOT NULL REFERENCES place (id),
-  price       INT          NOT NULL,
+  start       INT NOT NULL REFERENCES place (id),
+  dest        INT NOT NULL REFERENCES place (id),
+  price       INT NOT NULL,
   description VARCHAR(400)
-              NOT NULL,
-  due         TIMESTAMP    NOT NULL,
-  producer    INT          NOT NULL REFERENCES user (id),
-  consumer    INT          NOT NULL REFERENCES user (id),
-  status      INT          NOT NULL
+                  NOT NULL,
+  due         TIMESTAMP,
+  producer    INT NOT NULL REFERENCES user (id),
+  consumer    INT NOT NULL REFERENCES user (id),
+  status      INT NOT NULL
 );
 
 CREATE TABLE `group` (
   id          INT PRIMARY KEY AUTO_INCREMENT,
   name        VARCHAR(20)
-              NOT NULL,
+                  NOT NULL,
   description VARCHAR(400)
-              NOT NULL,
-  location    INT          NOT NULL
+                  NOT NULL,
+  location    INT NOT NULL
 );
 
 INSERT INTO user (username, password, realname, phone, coin)
@@ -43,3 +43,8 @@ INSERT INTO user (username, password, realname, phone, coin) VALUES ('user2', 'p
 INSERT INTO user (username, password, realname, phone, coin) VALUES ('user3', 'psw', 'xiaoming3', '123', 0);
 INSERT INTO user (username, password, realname, phone, coin) VALUES ('user4', 'psw', 'xiaoming4', '123', 0);
 
+INSERT INTO place (name, longitude, latitude) VALUES ('scu', 111.111, 111.111);
+
+INSERT INTO mission (start, dest, price, description, producer, consumer, status) VALUES (1, 1, 10, 'desc', 1, 1, 0);
+
+INSERT INTO `group` (name, description, location) VALUES ('scu_group', 'This is SCU group', 1);

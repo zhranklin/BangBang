@@ -5,11 +5,36 @@ import java.lang.{Double => JDouble}
 
 import com.bangbang.web.model.MissionStatus.MissionStatus
 
-case class User(id: Integer, username: String, password: String, realname: String, phone: String, coin: Integer)
+import scala.beans.BeanProperty
 
-case class Place(id: Integer, name: String, longitude: JDouble, latitude: JDouble)
+class User() {
+  @BeanProperty var id: Integer = _
+  @BeanProperty var username: String = _
+  @BeanProperty var password: String = _
+  @BeanProperty var realname: String = _
+  @BeanProperty var phone: String = _
+  @BeanProperty var coin: Integer = _
+}
 
-case class Mission(id: Integer, start: Place, dest: Place, price: Integer, description: String, due: Timestamp, producer: User, consumer: User, status: MissionStatus)
+class Place {
+  @BeanProperty var id: Integer = _
+  @BeanProperty var name: String = _
+  @BeanProperty var longitude: JDouble = _
+  @BeanProperty var latitude: JDouble = _
+}
+
+class Mission {
+  @BeanProperty var id: Integer = _
+  @BeanProperty var start: Place = _
+  @BeanProperty var dest: Place = _
+  @BeanProperty var price: Integer = _
+  @BeanProperty var description: String = _
+  @BeanProperty var due: Timestamp = _
+  @BeanProperty var producer: User = _
+  @BeanProperty var consumer: User = _
+  @BeanProperty var status: MissionStatus = _
+}
+
 
 object MissionStatus extends Enumeration {
   type MissionStatus = Value
