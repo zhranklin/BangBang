@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bangbang.web.controller.mapper.MissionMapper">
+    <select id="selectId" resultType="Mission">
+        select * from mission where id = #{id}
+    </select>
+    <resultMap id="StudentResult" type="com.mybatis3.domain.Student">
+        <id property="studId" column="stud_id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+</mapper>
