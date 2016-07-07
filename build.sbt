@@ -1,6 +1,6 @@
 
 //	compile 'org.springframework.boot:spring-boot-starter-aop'
-//	compile 'org.springframework.boot:spring-boot-starter-security'
+
 scalaVersion := "2.12.0-M5"
 libraryDependencies ++= {
   val springBootVersion = "1.3.5.RELEASE"
@@ -17,5 +17,8 @@ libraryDependencies ++= {
   "org.scalatest" % s"scalatest_$scala" % "3.0.0-RC4",
   "org.springframework" % "spring-test" % "4.2.6.RELEASE",
   "junit" % "junit" % "4.12"
+//    "org.springframework.boot" % "spring-boot-starter-security" % springBootVersion
+//  "org.springframework.security" % "spring-security-core" % "4.1.0.RELEASE"
+
   )
 }

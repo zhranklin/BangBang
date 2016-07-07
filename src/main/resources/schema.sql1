@@ -1,3 +1,9 @@
+DROP TABLE user;
+DROP TABLE place;
+DROP TABLE mission;
+DROP TABLE `group`;
+DROP TABLE group_admin;
+DROP TABLE group_member;
 CREATE TABLE user (
   id       INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(20) NOT NULL UNIQUE,
@@ -37,6 +43,18 @@ CREATE TABLE `group` (
   location    INT NOT NULL
 );
 
+CREATE TABLE group_admin (
+  id       INT PRIMARY KEY AUTO_INCREMENT,
+  user_id  INT NOT NULL REFERENCES user (id),
+  group_id INT NOT NULL REFERENCES `group` (id)
+);
+
+CREATE TABLE group_member (
+  id       INT PRIMARY KEY AUTO_INCREMENT,
+  user_id  INT NOT NULL REFERENCES user (id),
+  group_id INT NOT NULL REFERENCES `group` (id)
+);
+
 INSERT INTO user (username, password, realname, phone, coin)
 VALUES ('user1', 'psw', 'xiaoming1', '123', 0);
 INSERT INTO user (username, password, realname, phone, coin) VALUES ('user2', 'psw', 'xiaoming2', '123', 0);
@@ -48,3 +66,8 @@ INSERT INTO place (name, longitude, latitude) VALUES ('scu', 111.111, 111.111);
 INSERT INTO mission (start, dest, price, description, producer, consumer, status) VALUES (1, 1, 10, 'desc', 1, 1, 0);
 
 INSERT INTO `group` (name, description, location) VALUES ('scu_group', 'This is SCU group', 1);
+
+INSERT INTO group_admin (user_id, group_id) VALUES (1, 1);
+INSERT INTO group_member (user_id, group_id) VALUES (2, 1);
+INSERT INTO group_member (user_id, group_id) VALUES (3, 1);
+INSERT INTO group_member (user_id, group_id) VALUES (4, 1);
