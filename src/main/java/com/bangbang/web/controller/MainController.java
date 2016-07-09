@@ -5,15 +5,22 @@ import com.bangbang.web.controller.mapper.UserMapper;
 import com.bangbang.web.model.Mission;
 import com.bangbang.web.model.SimpleMission;
 import com.bangbang.web.model.User;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
-import org.springframework.stereotype.*;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -32,10 +39,16 @@ public class MainController {
   @Autowired
   MissionMapper missionMapper;
 
+  @RequestMapping("/")
+  String root(Model model) {
+    return "redirect:/home";
+  }
+
   private int userId = 1;
+
   @RequestMapping("/home")
   String home(Model model) {
-    User user = userMapper.findById(userId);
+    User user = getCurrentUser();
     model.addAttribute("user", user);
     model.addAttribute("missions", missionMapper.findByProducerId(userId));
     return "index";
@@ -43,7 +56,7 @@ public class MainController {
 
   @RequestMapping("info")
   String info(Model model) {
-    User user = userMapper.findById(userId);
+    User user = getCurrentUser();
     model.addAttribute("user", user);
     return "info";
   }
@@ -53,6 +66,15 @@ public class MainController {
     List<Mission> missions = missionMapper.findAll();
     model.addAttribute("missions", missions);
     return "cur-missions";
+  }
+
+  User getCurrentUser() {
+    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+      .getAuthentication()
+      .getPrincipal();
+    if (userDetails == null)
+      return null;
+    return userMapper.findByUserName(userDetails.getUsername());
   }
 
   @RequestMapping("my-missions")
@@ -72,7 +94,40 @@ public class MainController {
     return "create";
   }
 
+  @RequestMapping("login")
+  String login(Model model) {
+    return "log-in";
+  }
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(MainController.class, args);
+  }
+
+  @Configuration
+  @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+  protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin()
+        .loginPage("/login").failureUrl("/login?error").permitAll().and()
+        .logout().permitAll();
+    }
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+        .jdbcAuthentication()
+        .dataSource(dataSource)
+        .usersByUsernameQuery(
+          "SELECT username, password, TRUE " +
+          "FROM user WHERE username=?")
+        .authoritiesByUsernameQuery(
+          "SELECT username, 'ROLE_USER' FROM user WHERE username=?");
+    }
+
   }
 }

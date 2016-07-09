@@ -1,0 +1,28 @@
+			<div class="filter row">
+				<div class="row filter-option">
+					<div class="col-xs-4 text-center filter-item position" data-option="filter-position.html"><button>区域</button><i class="glyphicon glyphicon-chevron-down"></i></div>
+					<div class="col-xs-4 text-center filter-item price" data-option="filter-price.html"><button>报酬</button><i class="glyphicon glyphicon-chevron-down"></i></div>
+					<div class="col-xs-4 text-center filter-item time" data-option="filter-time.html"><button>时间</button><i class="glyphicon glyphicon-chevron-down"></i></div>
+				</div>
+				<div class="col-xs-12 filter-result"></div>
+			</div>
+			<div class="mission-item panel panel-default row" th:each="m:${missions}">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading"><img src="test.jpg" alt="head" th:text="${m.producer}" />StupidGuy</div>
+			  <div class="panel-body">
+			    <p th:text="${m.description}">帮我去西南门去快递，然后到一舍和二舍之间拿外卖，最后送到二基楼。</p>
+			  </div>
+
+			  <!-- List group -->
+			  <ul class="list-group">
+			    <li class="list-group-item"><i class="glyphicon glyphicon-hand-right"></i>任务起点：<th:block th:text="${m.start}">西南门</th:block></li>
+			    <li class="list-group-item"><i class="glyphicon glyphicon-flag"></i>任务终点：<th:block th:text="${m.dest}">二基楼</th:block></li>
+			    <li class="list-group-item"><i class="glyphicon glyphicon-jpy"></i>报酬：<th:block th:text="${m.price}">15元</th:block></li>
+			    <li class="list-group-item"><i class="glyphicon glyphicon-time"></i>截止时间：<th:block th:text="${m.due}">PM15:00</th:block></li>
+			    <li class="list-group-item"><i class="glyphicon glyphicon-earphone"></i>联系方式：<th:block th:text="${m.producer.phone}">18300000000</th:block></li>
+			    <li class="list-group-item"><i class="glyphicon glyphicon-stats"></i>状态：<th:block th:text="${m.status}">已接单</th:block>（接单人：<th:block th:text="${m.consumer}">xieheping</th:block> 电话：<th:block th:text="${m.consumer.phone}">18300000000</th:block>）</li>
+			    <li class="list-group-item"><button class="button button-rounded button-highlight">已完成</button></li>
+			    <li class="list-group-item"><button class="button button-rounded button-highlight">取消</button></li>
+			  </ul>
+			</div>
+			<script src="js/main.js"></script>

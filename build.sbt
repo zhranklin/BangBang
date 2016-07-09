@@ -16,8 +16,8 @@ libraryDependencies ++= {
   "com.h2database" % "h2" % "1.4.191",
   "org.scalatest" % s"scalatest_$scala" % "3.0.0-RC4",
   "org.springframework" % "spring-test" % "4.2.6.RELEASE",
-  "junit" % "junit" % "4.12"
-//    "org.springframework.boot" % "spring-boot-starter-security" % springBootVersion
+  "junit" % "junit" % "4.12",
+    "org.springframework.boot" % "spring-boot-starter-security" % springBootVersion
 //  "org.springframework.security" % "spring-security-core" % "4.1.0.RELEASE"
 
   )

@@ -1,0 +1,14 @@
+			<div class="info panel panel-default row">
+			<div class="panel-heading"><p>个人信息</p></div>
+			<div class="panel-body">
+			    <p class="col-xs-6">帮帮头像</p><img src="test.jpg" alt="head" class="col-xs-6"/>
+			  </div>
+			  <ul class="list-group container">
+			    <li class="list-group-item col-xs-6 text-left">用户名</li><li class="list-group-item col-xs-6 text-right" th:text="${user.username}">StupidGuy</li>
+			    <li class="list-group-item col-xs-6 text-left">真实姓名</li><li class="list-group-item col-xs-6 text-right" th:text="${user.realname}">王总</li>
+			    <li class="list-group-item col-xs-6 text-left">电话号码</li><li class="list-group-item col-xs-6 text-right" th:text="${user.phone}">18380000000</li>
+			    <li class="list-group-item col-xs-6 text-left">帮币</li><li class="list-group-item col-xs-6 text-right"><i class="glyphicon glyphicon-jpy"></i><th:block th:text="${user.coin}">100</th:block></li>
+			  </ul>
+			</div>
+			<div class="quit-btn"><button class="button button-rounded button-highlight">退出登录</button></div>
+			<script src="js/main.js"></script>

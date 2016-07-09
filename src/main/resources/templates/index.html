@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/buttons.css"/>
+    <title>帮帮</title>
+</head>
+<body>
+<div class="create-form container"></div>
+<div class="container">
+    <div class="row top-nav">
+        <div class="col-xs-10 nav-item title">BangBang</div>
+        <div class="col-xs-1 nav-item btn-add text-right" data-cover="create.html"><i
+                class="glyphicon glyphicon-plus"></i></div>
+        <div class="col-xs-1 nav-item head text-center" data-form="info.html"><img src="test.jpg" alt="head"/></div>
+    </div>
+    <div class="row main-view">
+        <div class="filter row">
+            <div class="row filter-option">
+                <div class="col-xs-4 text-center filter-item position" data-option="filter-position.html">
+                    <button>区域</button>
+                    <i class="glyphicon glyphicon-chevron-down"></i></div>
+                <div class="col-xs-4 text-center filter-item price" data-option="filter-price.html">
+                    <button>报酬</button>
+                    <i class="glyphicon glyphicon-chevron-down"></i></div>
+                <div class="col-xs-4 text-center filter-item time" data-option="filter-time.html">
+                    <button>时间</button>
+                    <i class="glyphicon glyphicon-chevron-down"></i></div>
+            </div>
+            <div class="col-xs-12 filter-result"></div>
+        </div>
+        <div class="mission-item panel panel-default row" th:each="m:${missions}">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><img src="test.jpg" alt="head" th:text="${m.producer}"/>StupidGuy</div>
+            <div class="panel-body">
+                <p th:text="${m.description}">帮我去西南门去快递，然后到一舍和二舍之间拿外卖，最后送到二基楼。</p>
+            </div>
+
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item"><i class="glyphicon glyphicon-hand-right"></i>任务起点：
+                    <th:block th:text="${m.start}">西南门</th:block>
+                </li>
+                <li class="list-group-item"><i class="glyphicon glyphicon-flag"></i>任务终点：
+                    <th:block th:text="${m.dest}">二基楼</th:block>
+                </li>
+                <li class="list-group-item"><i class="glyphicon glyphicon-jpy"></i>报酬：
+                    <th:block th:text="${m.price}">15元</th:block>
+                </li>
+                <li class="list-group-item"><i class="glyphicon glyphicon-time"></i>截止时间：
+                    <th:block th:text="${m.due}">PM15:00</th:block>
+                </li>
+                <li class="list-group-item"><i class="glyphicon glyphicon-earphone"></i>联系方式：
+                    <th:block th:text="${m.producer.phone}">18300000000</th:block>
+                </li>
+                <li class="list-group-item">
+                    <button class="button button-glow button-rounded button-highlight">我要帮</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row bottom-nav text-center">
+        <div class="col-xs-3 nav-item missions" data-form="cur-missions"><i
+                class="glyphicon glyphicon-briefcase"></i><br/>任务
+        </div>
+        <div class="col-xs-3 nav-item groups" data-form="groups.html"><i class="glyphicon glyphicon-map-marker"></i><br/>圈子
+        </div>
+        <div class="col-xs-3 nav-item my-missions" data-form="my-missions"><i
+                class="glyphicon glyphicon-list-alt"></i><br/>发布
+        </div>
+        <div class="col-xs-3 nav-item info" data-form="info"><i class="glyphicon glyphicon-user"></i><br/>我的</div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
