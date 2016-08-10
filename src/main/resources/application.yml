@@ -6,6 +6,20 @@ spring:
     username: test
     password: test
     driver-class-name: com.mysql.jdbc.Driver
+qq:
+  client:
+    clientId: 101339782
+    clientSecret: bc16b19fbbeb7f1d85b8e962aa713ed5
+    accessTokenUri: http://zhranklin.com/qq/token
+    userAuthorizationUri: https://graph.qq.com/oauth2.0/authorize
+    clientAuthenticationScheme: form
+    authenticationScheme: query
+  resource:
+    userInfoUri: http://zhranklin.com/qq/me
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
 ---
 spring:
   profiles: production

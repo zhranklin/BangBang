@@ -1,4 +1,4 @@
-package com.bangbang.web.controller.mapper;
+package com.bangbang.mapper;
 
 import com.bangbang.web.model.User;
 import org.apache.ibatis.annotations.*;

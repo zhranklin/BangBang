@@ -3,7 +3,7 @@ package com.bangbang.web.model
 import java.sql.Timestamp
 import java.lang.{Double => JDouble}
 
-import com.bangbang.web.controller.mapper._
+import com.bangbang.mapper._
 import com.bangbang.web.model.MissionStatus.MissionStatus
 import org.springframework.beans.factory.annotation.Autowired
 

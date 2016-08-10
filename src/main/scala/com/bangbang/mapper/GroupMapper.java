@@ -1,4 +1,4 @@
-package com.bangbang.web.controller.mapper;
+package com.bangbang.mapper;
 
 import com.bangbang.web.model.Group;
 import com.bangbang.web.model.User;
@@ -13,11 +13,11 @@ public interface GroupMapper {
   @Results({
     @Result(id = true, column = "id", property = "id"),
     @Result(property = "location", column = "location",
-      one = @One(select = "com.bangbang.web.controller.mapper.PlaceMapper.findById")),
+      one = @One(select = "com.bangbang.mapper.PlaceMapper.findById")),
     @Result(property = "admins", column = "id",
-      many = @Many(select = "com.bangbang.web.controller.mapper.GroupMapper.findAdminsByGroupId")),
+      many = @Many(select = "GroupMapper.findAdminsByGroupId")),
     @Result(property = "members", column = "id",
-      many = @Many(select = "com.bangbang.web.controller.mapper.GroupMapper.findMembersByGroupId"))
+      many = @Many(select = "GroupMapper.findMembersByGroupId"))
   })
   Group findById(Integer id);
 

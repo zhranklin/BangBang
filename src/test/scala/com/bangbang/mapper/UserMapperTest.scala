@@ -1,5 +1,6 @@
-package com.bangbang.web.controller.mapper
+package com.bangbang.mapper
 
+import com.bangbang.web.controller.MainController
 import com.github.scalaspring.scalatest.TestContextManagement
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration
   * Created by Zhranklin on 16/7/5.
   */
 
-@SpringApplicationConfiguration(classes = Array(classOf[com.bangbang.web.controller.MainController]))
+@SpringApplicationConfiguration(classes = Array(classOf[MainController]))
 @WebAppConfiguration
 class UserMapperTest extends FlatSpec with TestContextManagement with Matchers {
 

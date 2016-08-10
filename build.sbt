@@ -1,10 +1,10 @@
 
 //	compile 'org.springframework.boot:spring-boot-starter-aop'
 
-scalaVersion := "2.12.0-M5"
+scalaVersion := "2.12.0-M4"
 libraryDependencies ++= {
   val springBootVersion = "1.3.5.RELEASE"
-  val scala = "2.12.0-M5"
+  val scala = "2.12.0-M4"
   Seq(
   "org.springframework.boot" % "spring-boot-starter-web" % springBootVersion,
   "org.springframework.boot" % "spring-boot-starter-thymeleaf" % springBootVersion,
@@ -14,11 +14,13 @@ libraryDependencies ++= {
   "org.scalaz" % s"scalaz-core_$scala" % "7.2.4",
   //runtime
   "com.h2database" % "h2" % "1.4.191",
-  "org.scalatest" % s"scalatest_$scala" % "3.0.0-RC4",
+  "org.scalatest" % s"scalatest_$scala" % "2.2.6",
   "org.springframework" % "spring-test" % "4.2.6.RELEASE",
   "junit" % "junit" % "4.12",
-    "org.springframework.boot" % "spring-boot-starter-security" % springBootVersion
-//  "org.springframework.security" % "spring-security-core" % "4.1.0.RELEASE"
+//  "org.springframework.boot" % "spring-boot-starter-security" % springBootVersion,
+//  "org.springframework.security" % "spring-security-core" % "4.1.0.RELEASE",
+//  "org.springframework.security.oauth" % "spring-security-oauth2" % "2.0.10.RELEASE",
+  "org.apache.httpcomponents" % "httpclient" % "4.5.2"
 
   )
 }

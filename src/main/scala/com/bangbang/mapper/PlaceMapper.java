@@ -1,12 +1,17 @@
-package com.bangbang.web.controller.mapper;
+package com.bangbang.mapper;
 
 import com.bangbang.web.model.Place;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
-interface PlaceMapper {
+public interface PlaceMapper {
+  @Select("SELECT * FROM place")
+  List<Place> findAll();
+
   @Select("SELECT * FROM place WHERE name = #{name}")
   Place findByName(String name);
 
