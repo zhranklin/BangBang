@@ -1,6 +1,3 @@
-
-//	compile 'org.springframework.boot:spring-boot-starter-aop'
-
 scalaVersion := "2.12.0-M4"
 libraryDependencies ++= {
   val springBootVersion = "1.3.5.RELEASE"
@@ -23,4 +20,22 @@ libraryDependencies ++= {
   "org.apache.httpcomponents" % "httpclient" % "4.5.2"
 
   )
+}
+
+mainClass in assembly := Some("com.zhranklin.blog.Boot")
+
+
+
+assemblyMergeStrategy in assembly := {
+  case PathList("org", "apache", "commons", "logging", xs @ _*)         => MergeStrategy.first
+  case PathList("org", "springframework", xs @ _*)         => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".json" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".xml" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".provides" => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".factories" => MergeStrategy.first
+  case "application.conf"                            => MergeStrategy.concat
+  case "unwanted.txt"                                => MergeStrategy.discard
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
 }

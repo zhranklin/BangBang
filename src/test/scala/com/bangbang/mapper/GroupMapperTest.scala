@@ -1,5 +1,6 @@
 package com.bangbang.mapper
 
+import com.bangbang.BangBangApplication
 import com.bangbang.web.controller.MainController
 import com.bangbang.web.model.Group
 import com.github.scalaspring.scalatest.TestContextManagement
@@ -14,7 +15,7 @@ import scala.collection.JavaConverters._
 /**
   * Created by Zhranklin on 16/7/6.
   */
-@SpringApplicationConfiguration(classes = Array(classOf[MainController]))
+@SpringApplicationConfiguration(classes = Array(classOf[BangBangApplication]))
 @WebAppConfiguration
 class GroupMapperTest extends FlatSpec with TestContextManagement with Matchers {
   @Autowired var groupMapper: GroupMapper = _

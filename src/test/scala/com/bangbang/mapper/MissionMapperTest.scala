@@ -1,5 +1,6 @@
 package com.bangbang.mapper
 
+import com.bangbang.BangBangApplication
 import com.bangbang.web.controller.MainController
 import com.github.scalaspring.scalatest.TestContextManagement
 import org.scalatest._
@@ -10,7 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration
 /**
   * Created by Zhranklin on 16/7/6.
   */
-@SpringApplicationConfiguration(classes = Array(classOf[MainController]))
+@SpringApplicationConfiguration(classes = Array(classOf[BangBangApplication]))
 @WebAppConfiguration
 class MissionMapperTest extends FlatSpec with TestContextManagement with Matchers {
   @Autowired var missionMapper: MissionMapper = _

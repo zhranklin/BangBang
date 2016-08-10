@@ -13,11 +13,11 @@ public interface GroupMapper {
   @Results({
     @Result(id = true, column = "id", property = "id"),
     @Result(property = "location", column = "location",
-      one = @One(select = "com.bangbang.mapper.PlaceMapper.findById")),
-    @Result(property = "admins", column = "id",
-      many = @Many(select = "GroupMapper.findAdminsByGroupId")),
-    @Result(property = "members", column = "id",
-      many = @Many(select = "GroupMapper.findMembersByGroupId"))
+      one = @One(select = "com.bangbang.mapper.PlaceMapper.findById"))
+//    @Result(property = "admins", column = "id",
+//      many = @Many(select = "GroupMapper.findAdminsByGroupId")),
+//    @Result(property = "members", column = "id",
+//      many = @Many(select = "GroupMapper.findMembersByGroupId"))
   })
   Group findById(Integer id);
 
