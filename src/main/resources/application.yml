@@ -20,6 +20,8 @@ logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
+server:
+  port: 8082
 ---
 spring:
   profiles: production
